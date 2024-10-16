@@ -18,8 +18,8 @@ To get started with the Numerical Methods Solver, follow these steps:
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/yourusername/numerical-methods-solver.git
-   cd numerical-methods-solver
+   git clone https://github.com/MateoVR13/Numerical-Solver.git
+   cd Numerical-Solver
    ```
 
 2. Install the required libraries using `requirements.txt`:
@@ -31,12 +31,10 @@ To get started with the Numerical Methods Solver, follow these steps:
 
 Make sure you have the following Python libraries installed:
 
-- `seaborn`
-- `plotly`
-- `matplotlib`
-- `sympy`
-- `scipy`
-- `math`
+- `numpy==2.1.2`
+- `plotly==5.24.1`
+- `seaborn==0.13.2`
+- `streamlit==1.39.0`
 
 The `requirements.txt` file in this repository includes all necessary dependencies.
 
@@ -45,7 +43,7 @@ The `requirements.txt` file in this repository includes all necessary dependenci
 After installation, you can run the solver by executing the main script:
 
 ```bash
-python main.py
+streamlit run .ui/ui.py
 ```
 
 You can then input the function and parameters for the desired numerical method, and the program will output the solution and graphical representations where applicable.
@@ -56,7 +54,7 @@ Contributions are welcome! If you have suggestions for improvements or want to a
 
 ## License
 
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+This project is intended for personal use only. It should not be distributed, sold, or used for any commercial purposes. Additionally, this project cannot be modified, altered, or adapted in any way. By using this project, you agree to adhere to these restrictions.
 
 ## Acknowledgments
 
