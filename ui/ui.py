@@ -3,6 +3,7 @@ import numpy as np
 import plotly.express as px
 import sympy as sp
 import math
+from pprint import pprint
 
 
 
@@ -11,7 +12,7 @@ st.set_page_config(layout="wide")
 st.title("Solucionador Numérico")
 
 tab1, tab2, tab3, tab4, tab5, tab6, tab7 = st.tabs([
-    "Bisección", "Falsa Posición", "Newton Raphson", 
+    "Bisección", "Newton Raphson", "Falsa Posición", 
     "Secante", "Müller", "Series de Taylor", "Serie de Maclaurin"
 ])
 
@@ -124,8 +125,9 @@ def newton_raphson(new_x, funcion, max_iters=None, min_error=None):
     iters = 0 # Contador de iteraciones
     est_err = 100 # Error inicial
 
-    list_its = []  # Lista para todas las iteraciones
-    iter_list = []  # Lista para la iteración actual
+
+    list_its = [[iters, new_x, est_err]]  # Lista para todas las iteraciones
+    iter_list = [] # Lista para la iteración actual
 
     while True: 
     
@@ -133,7 +135,9 @@ def newton_raphson(new_x, funcion, max_iters=None, min_error=None):
         new_x = new_x - (evaluar_funcion(new_x) / evaluar_derivada(new_x))
         est_err = abs((new_x - old_x) / new_x) * 100
         
-        iter_list.append([iters, format(new_x, ".3f"), format(est_err,".2f")])
+        iter_list.append(iters+1)
+        iter_list.append(format(new_x, ".5f"))
+        iter_list.append(format(est_err,".3f"))
         list_its.append(iter_list.copy())
         
         iters += 1
@@ -187,12 +191,18 @@ with tab2:
                     st.subheader("Resultados del Método")
                     st.write("Método: Newton Raphson")
                     st.write(f"Número de iteraciones: {len(list_its)}")
-                    st.write(f"La raíz del método es: {format(raiz, ".3f")}")
+                    st.write(f"La raíz del método es: {format(raiz, ".5f")}")
                     st.write(f"Error final: {format(est_err, ".3f")}%")
                     
                     st.subheader("Función")
                     lat_expression = funcion.replace("**", "^").replace("*", " ")
                     st.latex(lat_expression)
+                    
+                    st.subheader("Derivada")
+                    x = sp.Symbol('x')
+                    deri = sp.diff(funcion, x)
+                    lat_expression_2 = deri
+                    st.latex(lat_expression_2)
                     
                     st.subheader("Gráfico de la función")
                     x = np.linspace(rang_min_x, rang_max_x, 100)
@@ -205,7 +215,7 @@ with tab2:
                     
                 with col3:
                     
-                    st.subheader("Tabla de iteraciones")                    
+                    st.subheader("Tabla de iteraciones")
                     st.dataframe(list_its)
                     
             except Exception as e:
