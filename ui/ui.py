@@ -718,5 +718,5 @@ with tab10:
         st.write("""
         **Equipo de desarrollo**  
         - **Mateo Vergara**: Desarrollo de software y programación en Streamlit.  
-        - **Maria Paula Paredes Lozada** y **Lya Velez**: Organización y conversión de métodos a algoritmos numéricos, así como la documentación del proyecto.
+        - **Maria Paula Paredes Lozada** y **Lya Velez Pineda**: Organización y conversión de métodos a algoritmos numéricos, así como la documentación del proyecto.
         """)
