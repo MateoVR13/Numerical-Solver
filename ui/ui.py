@@ -705,10 +705,15 @@ with tab9:
 # ----------------------------------- ABOUT TAB ----------------------------------------------------
 
 with tab10:
-    col1, col2 = st.columns([1, 1])
-    
-    with col1:
-        st.subheader("Acerca de")
-        st.write("Este es un proyecto de Streamlit desarrollado para el curso de Análisis Numérico que permite calcular raíces de funciones mediante diferentes métodos numéricos.")
-        st.write("Desarrollado por: [Mateo Vergara](https://github.com/MateoVR13), [Maria Paula Paredes Lozada] y [Lya Velez]")
-    
+
+    st.subheader("Acerca de")
+
+    st.write("""
+    Este proyecto de Streamlit fue desarrollado como parte del curso de **Análisis Numérico**. Permite calcular raíces de funciones mediante diferentes métodos numéricos, optimizando el proceso de cálculo y facilitando el análisis de resultados.
+    """)
+
+    st.write("""
+    **Equipo de desarrollo**  
+    - **Mateo Vergara**: Desarrollo de software y programación en Streamlit.  
+    - **Maria Paula Paredes Lozada** y **Lya Velez**: Organización y conversión de métodos a algoritmos numéricos, así como la documentación del proyecto.
+    """)
