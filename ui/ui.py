@@ -706,14 +706,17 @@ with tab9:
 
 with tab10:
 
-    st.subheader("Acerca de")
+    col1, col2, col3 = st.columns([1, 1, 1])
+    
+    with col2:
+        st.subheader("Acerca de")
 
-    st.write("""
-    Este proyecto de Streamlit fue desarrollado como parte del curso de **Análisis Numérico**. Permite calcular raíces de funciones mediante diferentes métodos numéricos, optimizando el proceso de cálculo y facilitando el análisis de resultados.
-    """)
+        st.write("""
+        Este proyecto de Streamlit fue desarrollado como parte del curso de **Análisis Numérico**. Permite calcular raíces de funciones mediante diferentes métodos numéricos, optimizando el proceso de cálculo y facilitando el análisis de resultados.
+        """)
 
-    st.write("""
-    **Equipo de desarrollo**  
-    - **Mateo Vergara**: Desarrollo de software y programación en Streamlit.  
-    - **Maria Paula Paredes Lozada** y **Lya Velez**: Organización y conversión de métodos a algoritmos numéricos, así como la documentación del proyecto.
-    """)
+        st.write("""
+        **Equipo de desarrollo**  
+        - **Mateo Vergara**: Desarrollo de software y programación en Streamlit.  
+        - **Maria Paula Paredes Lozada** y **Lya Velez**: Organización y conversión de métodos a algoritmos numéricos, así como la documentación del proyecto.
+        """)
