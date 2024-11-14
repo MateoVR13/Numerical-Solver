@@ -9,9 +9,9 @@ st.set_page_config(layout="wide", page_title="Solucionador Numérico", page_icon
 
 st.title("Solucionador Numérico")
 
-tab1, tab2, tab3, tab4, tab5, tab6, tab7, tab8, tab9 = st.tabs([
+tab1, tab2, tab3, tab4, tab5, tab6, tab7, tab8, tab9, tab10 = st.tabs([
     "Bisección", "Falsa Posición", "Newton Raphson", 
-    "Secante", "Müller", "Series de Taylor", "Serie de Maclaurin", "Trapecio", "Simpson"
+    "Secante", "Müller", "Series de Taylor", "Serie de Maclaurin", "Trapecio", "Simpson", "Acerca de"
 ])
 
 # ----------------------------------- BISECTION TAB -------------------------------------------------
@@ -701,3 +701,15 @@ with tab9:
                     
             except Exception as e:
                 st.error(f"Error en el cálculo: {str(e)}")
+                
+# ----------------------------------- ABOUT TAB ----------------------------------------------------
+
+with tab10:
+    col1 = st.columns([1])
+    
+    with col1:
+        
+        st.subheader("Acerca de")
+        st.write_stream("Este es un proyecto de Streamlit desarrollado para el curso de Análisis Numérico que permite calcular raíces de funciones mediante diferentes métodos numéricos.")
+        st.write_stream("Desarrollado por: [Mateo Vergara](https://github.com/MateoVR13), [Maria Paula Paredes Lozada] y [Lya Velez]")
+        
