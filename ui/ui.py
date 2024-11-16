@@ -5,7 +5,7 @@ import sympy as sp
 import math
 from pprint import pprint
 
-st.set_page_config(layout="wide", page_title="Solucionador Numérico", page_icon="⭐")
+st.set_page_config(layout="wide", page_title="Solucionador Numérico", page_icon="⚛️")
 
 st.title("Solucionador Numérico")
 
@@ -132,7 +132,6 @@ def metodo_falsa_posicion(a, b, funcion, error_minimo=None, max_iteraciones=None
             list_vals = [list_vals[2], list_vals[1]]
         else:
             break
-
 
         list_vals.append(list_vals[0] - (evaluar_funcion(list_vals[0]) * (list_vals[1] - list_vals[0])) /
                          (evaluar_funcion(list_vals[1]) - evaluar_funcion(list_vals[0])))
