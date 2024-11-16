@@ -6,7 +6,8 @@ from PIL import Image
 import math
 from pprint import pprint
 
-img = Image.open("/assets/imgs/icon.png")
+img = Image.open("img/logo.png")
+
 st.set_page_config(layout="wide", page_title="Solucionador Numérico", page_icon = img)
 
 st.title("Solucionador Numérico")
