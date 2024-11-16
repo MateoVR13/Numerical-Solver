@@ -2,13 +2,10 @@ import streamlit as st
 import numpy as np
 import plotly.express as px
 import sympy as sp
-from PIL import Image
 import math
 from pprint import pprint
 
-img = Image.open("assets/imgs/logo.ico")
-
-st.set_page_config(layout="wide", page_title="Solucionador Numérico", page_icon = img)
+st.set_page_config(layout="wide", page_title="Solucionador Numérico", page_icon = "⚛️")
 
 st.title("Solucionador Numérico")
 
