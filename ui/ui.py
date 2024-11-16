@@ -2,10 +2,12 @@ import streamlit as st
 import numpy as np
 import plotly.express as px
 import sympy as sp
+from PIL import Image
 import math
 from pprint import pprint
 
-st.set_page_config(layout="wide", page_title="Solucionador Numérico", page_icon="/assets/imgs/icon.png")
+img = st.image("/assets/imgs/icon.png")
+st.set_page_config(layout="wide", page_title="Solucionador Numérico", page_icon = img)
 
 st.title("Solucionador Numérico")
 
