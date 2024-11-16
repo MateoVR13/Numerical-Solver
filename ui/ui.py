@@ -34,7 +34,7 @@ def metodo_biseccion(a, b, funcion, error_minimo = None, max_iteraciones = None)
         elif (new_list[0] * new_list[2]) > 0:
             list_vals = [list_vals[2], list_vals[1]]
         else:
-            break  # Se encontró la raíz exacta
+            break
         
         list_vals.append((list_vals[0] + list_vals[1]) / 2)
         new_c = list_vals[2]
@@ -125,15 +125,15 @@ def metodo_falsa_posicion(a, b, funcion, error_minimo=None, max_iteraciones=None
     while True:
         new_list = [evaluar_funcion(x) for x in list_vals[:3]]
 
-        # Actualizar intervalos basándose en el producto de f(a) y f(c)
+        
         if (new_list[0] * new_list[2]) < 0:
-            list_vals = [list_vals[0], list_vals[2]]  # La raíz está entre a y c
+            list_vals = [list_vals[0], list_vals[2]]
         elif (new_list[0] * new_list[2]) > 0:
-            list_vals = [list_vals[2], list_vals[1]]  # La raíz está entre c y b
+            list_vals = [list_vals[2], list_vals[1]]
         else:
-            break  # Raíz exacta encontrada
+            break
 
-        # Nueva posición falsa
+        
         list_vals.append(list_vals[0] - (evaluar_funcion(list_vals[0]) * (list_vals[1] - list_vals[0])) / 
                          (evaluar_funcion(list_vals[1]) - evaluar_funcion(list_vals[0])))
         
@@ -144,7 +144,6 @@ def metodo_falsa_posicion(a, b, funcion, error_minimo=None, max_iteraciones=None
         list_its.append(list_vals)
         new_itr += 1
 
-        # Verificación de criterios de parada
         if error_minimo is not None and est_error <= error_minimo:
             break
         if max_iteraciones is not None and new_itr >= max_iteraciones:
@@ -221,12 +220,12 @@ def newton_raphson(new_x, funcion, max_iters = None, min_error = None):
     evaluar_funcion = sp.lambdify(x, funcion)
     evaluar_derivada = sp.lambdify(x, deri)
     
-    iters = 0 # Contador de iteraciones
-    est_err = 100 # Error inicial
+    iters = 0
+    est_err = 100
 
 
-    list_its = [[iters, new_x, est_err]]  # Lista para todas las iteraciones
-    iter_list = [] # Lista para la iteración actual
+    list_its = [[iters, new_x, est_err]]
+    iter_list = []
 
     while True: 
     
@@ -519,8 +518,8 @@ with tab6:
     with col1:
         st.subheader("Ingrese los valores de entrada:")
         funcion = st.text_input("Función", key="taylor_fun")
-        x0 = st.number_input("Punto de expansión (x₀)", key="taylor_x0")
-        n = st.number_input("Número de términos", min_value=1, value=4, key="taylor_n")
+        x0 = st.number_input("(x₀)", key="taylor_x0")
+        n = st.number_input("n", min_value=1, value=4, key="taylor_n")
         punto = st.number_input("Punto a evaluar", key="taylor_punto")
         
         if st.button("Calcular", key="taylor_btn"):
@@ -545,7 +544,7 @@ with tab6:
 # ----------------------------------- MACLAURIN SERIES TAB --------------------------------------------
 
 def serie_maclaurin(funcion, n, punto):
-    return serie_taylor(funcion, 0, n, punto)  # Maclaurin es un caso especial de Taylor en x₀=0
+    return serie_taylor(funcion, 0, n, punto)
 
 with tab7:
     col1, col2 = st.columns([1, 2])
@@ -553,7 +552,7 @@ with tab7:
     with col1:
         st.subheader("Ingrese los valores de entrada:")
         funcion = st.text_input("Función", key="maclaurin_fun")
-        n = st.number_input("Número de términos", min_value=1, value=4, key="maclaurin_n")
+        n = st.number_input("n", min_value=1, value=4, key="maclaurin_n")
         punto = st.number_input("Punto a evaluar", key="maclaurin_punto")
         
         if st.button("Calcular", key="maclaurin_btn"):
@@ -587,7 +586,6 @@ def metodo_trapecio(funcion, a, b, n):
     
     integral = h * (y[0]/2 + sum(y[1:-1]) + y[-1]/2)
     
-    # Create interval data table
     intervals = [[i, float(x[i]), float(y[i])] for i in range(len(x))]
     
     return integral, intervals
@@ -653,7 +651,6 @@ def metodo_simpson(funcion, a, b, n):
                      4*sum(y[i] for i in range(1, n, 2)) +
                      2*sum(y[i] for i in range(2, n-1, 2)))
     
-    # Create interval data table
     intervals = [[i, float(x[i]), float(y[i])] for i in range(len(x))]
     
     return integral, intervals
