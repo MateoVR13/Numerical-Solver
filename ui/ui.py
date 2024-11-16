@@ -5,7 +5,7 @@ import sympy as sp
 import math
 from pprint import pprint
 
-st.set_page_config(layout="wide", page_title="Solucionador Numérico", page_icon="/assets/imgs/favicon.png")
+st.set_page_config(layout="wide", page_title="Solucionador Numérico", page_icon="/assets/imgs/icon.png")
 
 st.title("Solucionador Numérico")
 
