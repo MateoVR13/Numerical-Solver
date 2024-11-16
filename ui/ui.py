@@ -590,7 +590,7 @@ def metodo_trapecio(funcion, a, b, n):
     
     return integral, intervals
 
-with tab8:
+with tab6:
     col1, col2, col3 = st.columns([1, 1, 1])
     
     with col1:
@@ -655,7 +655,7 @@ def metodo_simpson(funcion, a, b, n):
     
     return integral, intervals
 
-with tab9:
+with tab7:
     col1, col2, col3 = st.columns([1, 1, 1])
     
     with col1:
@@ -701,7 +701,7 @@ with tab9:
                 
 # ----------------------------------- ABOUT TAB ----------------------------------------------------
 
-with tab10:
+with tab8:
 
     col1, col2, col3 = st.columns([1, 1, 1])
     
