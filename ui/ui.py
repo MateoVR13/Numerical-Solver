@@ -498,81 +498,81 @@ with tab5:
             except Exception as e:
                 st.error(f"Error en el cálculo: {str(e)}")
 
-# ----------------------------------- TAYLOR SERIES TAB --------------------------------------------
+# # ----------------------------------- TAYLOR SERIES TAB --------------------------------------------
 
-def serie_taylor(funcion, x0, n, punto):
-    x = sp.Symbol('x')
-    f = sp.sympify(funcion)
-    serie = 0
+# def serie_taylor(funcion, x0, n, punto):
+#     x = sp.Symbol('x')
+#     f = sp.sympify(funcion)
+#     serie = 0
     
-    for i in range(n+1):
-        derivada = sp.diff(f, x, i)
-        termino = (derivada.subs(x, x0) * (punto - x0)**i) / math.factorial(i)
-        serie += termino
+#     for i in range(n+1):
+#         derivada = sp.diff(f, x, i)
+#         termino = (derivada.subs(x, x0) * (punto - x0)**i) / math.factorial(i)
+#         serie += termino
     
-    return float(serie)
+#     return float(serie)
 
-with tab6:
-    col1, col2 = st.columns([1, 2])
+# with tab6:
+#     col1, col2 = st.columns([1, 2])
     
-    with col1:
-        st.subheader("Ingrese los valores de entrada:")
-        funcion = st.text_input("Función", key="taylor_fun")
-        x0 = st.number_input("(x₀)", key="taylor_x0")
-        n = st.number_input("n", min_value=1, value=4, key="taylor_n")
-        punto = st.number_input("Punto a evaluar", key="taylor_punto")
+#     with col1:
+#         st.subheader("Ingrese los valores de entrada:")
+#         funcion = st.text_input("Función", key="taylor_fun")
+#         x0 = st.number_input("(x₀)", key="taylor_x0")
+#         n = st.number_input("n", min_value=1, value=4, key="taylor_n")
+#         punto = st.number_input("Punto a evaluar", key="taylor_punto")
         
-        if st.button("Calcular", key="taylor_btn"):
-            try:
-                resultado = serie_taylor(funcion, x0, n, punto)
+#         if st.button("Calcular", key="taylor_btn"):
+#             try:
+#                 resultado = serie_taylor(funcion, x0, n, punto)
                 
-                with col2:
-                    st.subheader("Resultados")
-                    st.write(f"Valor aproximado en x = {punto}: {resultado}")
+#                 with col2:
+#                     st.subheader("Resultados")
+#                     st.write(f"Valor aproximado en x = {punto}: {resultado}")
                     
-                    x = sp.Symbol('x')
-                    f = sp.sympify(funcion)
-                    valor_real = float(f.subs(x, punto))
-                    error = abs((valor_real - resultado)/valor_real) * 100
+#                     x = sp.Symbol('x')
+#                     f = sp.sympify(funcion)
+#                     valor_real = float(f.subs(x, punto))
+#                     error = abs((valor_real - resultado)/valor_real) * 100
                     
-                    st.write(f"Valor real: {valor_real}")
-                    st.write(f"Error relativo: {error:.2f}%")
+#                     st.write(f"Valor real: {valor_real}")
+#                     st.write(f"Error relativo: {error:.2f}%")
                     
-            except Exception as e:
-                st.error(f"Error en el cálculo: {str(e)}")
+#             except Exception as e:
+#                 st.error(f"Error en el cálculo: {str(e)}")
 
-# ----------------------------------- MACLAURIN SERIES TAB --------------------------------------------
+# # ----------------------------------- MACLAURIN SERIES TAB --------------------------------------------
 
-def serie_maclaurin(funcion, n, punto):
-    return serie_taylor(funcion, 0, n, punto)
+# def serie_maclaurin(funcion, n, punto):
+#     return serie_taylor(funcion, 0, n, punto)
 
-with tab7:
-    col1, col2 = st.columns([1, 2])
+# with tab7:
+#     col1, col2 = st.columns([1, 2])
     
-    with col1:
-        st.subheader("Ingrese los valores de entrada:")
-        funcion = st.text_input("Función", key="maclaurin_fun")
-        n = st.number_input("n", min_value=1, value=4, key="maclaurin_n")
-        punto = st.number_input("Punto a evaluar", key="maclaurin_punto")
+#     with col1:
+#         st.subheader("Ingrese los valores de entrada:")
+#         funcion = st.text_input("Función", key="maclaurin_fun")
+#         n = st.number_input("n", min_value=1, value=4, key="maclaurin_n")
+#         punto = st.number_input("Punto a evaluar", key="maclaurin_punto")
         
-        if st.button("Calcular", key="maclaurin_btn"):
-            try:
-                resultado = serie_maclaurin(funcion, n, punto)
+#         if st.button("Calcular", key="maclaurin_btn"):
+#             try:
+#                 resultado = serie_maclaurin(funcion, n, punto)
                 
-                with col2:
-                    st.subheader("Resultados")
-                    st.write(f"Valor aproximado en x = {punto}: {resultado}")
+#                 with col2:
+#                     st.subheader("Resultados")
+#                     st.write(f"Valor aproximado en x = {punto}: {resultado}")
                     
-                    x = sp.Symbol('x')
-                    f = sp.sympify(funcion)
-                    valor_real = float(f.subs(x, punto))
-                    error = abs((valor_real - resultado)/valor_real) * 100
+#                     x = sp.Symbol('x')
+#                     f = sp.sympify(funcion)
+#                     valor_real = float(f.subs(x, punto))
+#                     error = abs((valor_real - resultado)/valor_real) * 100
                     
-                    st.write(f"Valor real: {valor_real}")
-                    st.write(f"Error relativo: {error:.2f}%")
+#                     st.write(f"Valor real: {valor_real}")
+#                     st.write(f"Error relativo: {error:.2f}%")
                     
-            except Exception as e:
-                st.error(f"Error en el cálculo: {str(e)}")
+#             except Exception as e:
+#                 st.error(f"Error en el cálculo: {str(e)}")
 
 # ----------------------------------- TRAPEZOIDAL RULE TAB --------------------------------------------
 
