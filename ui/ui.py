@@ -11,7 +11,7 @@ st.title("Solucionador Numérico")
 
 tab1, tab2, tab3, tab4, tab5, tab6, tab7, tab8, tab9, tab10 = st.tabs([
     "Bisección", "Falsa Posición", "Newton Raphson", 
-    "Secante", "Müller", "Series de Taylor", "Serie de Maclaurin", "Trapecio", "Simpson", "Acerca de"
+    "Secante", "Müller", "", "", "Trapecio", "Simpson", "Acerca de"
 ])
 
 # ----------------------------------- BISECTION TAB -------------------------------------------------
