@@ -9,9 +9,9 @@ st.set_page_config(layout="wide", page_title="Solucionador Numérico", page_icon
 
 st.title("Solucionador Numérico")
 
-tab1, tab2, tab3, tab4, tab5, tab6, tab7, tab8, tab9, tab10 = st.tabs([
+tab1, tab2, tab3, tab4, tab5, tab6, tab7, tab8 = st.tabs([
     "Bisección", "Falsa Posición", "Newton Raphson", 
-    "Secante", "Müller", "", "", "Trapecio", "Simpson", "Acerca de"
+    "Secante", "Müller", "Trapecio", "Simpson", "Acerca de"
 ])
 
 # ----------------------------------- BISECTION TAB -------------------------------------------------
