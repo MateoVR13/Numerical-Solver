@@ -48,8 +48,8 @@ with tab1:
             error_minimo = None
 
         st.subheader("Ingrese el rango del gráfico de la función.")
-        rang_min_x = st.number_input("Valor -x", raiz - 1)
-        rang_max_x = st.number_input("VAlor +x", raiz + 1)
+        rang_min_x = st.number_input("Valor -x")
+        rang_max_x = st.number_input("Valor +x")
 
         if st.button("Calcular"):
             try:
