@@ -6,7 +6,6 @@ import math
 import os
 import sys
 
-
 root_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
 if root_path not in sys.path:
     sys.path.append(root_path)
@@ -35,8 +34,8 @@ with tab1:
 
     with col1:
         st.subheader("Ingrese los valores de entrada:")
-        a = st.number_input("Valor de a", step = 0.5, format="%f")
-        b = st.number_input("Valor de b", step = 0.5, format="%f")
+        a = st.number_input("Valor de a", step = 0.5, format = "%f")
+        b = st.number_input("Valor de b", step = 0.5, format = "%f")
         funcion = st.text_input("Función")
 
         criterio = st.selectbox("Criterio de parada", ["Error Mínimo", "Número de Iteraciones"])
@@ -49,8 +48,8 @@ with tab1:
             error_minimo = None
 
         st.subheader("Ingrese el rango del gráfico de la función.")
-        rang_min_x = st.number_input("Valor -x")
-        rang_max_x = st.number_input("Valor +x")
+        rang_min_x = st.number_input({raiz - 1})
+        rang_max_x = st.number_input({raiz + 1})
 
         if st.button("Calcular"):
             try:
@@ -119,7 +118,7 @@ with tab2:
                 error_minimo = float(error_minimo) if error_minimo else None
                 max_iteraciones = int(max_iteraciones) if max_iteraciones else None
 
-                # Llamar al método de falsa posición en lugar de bisección
+                # Llamar al metodo de falsa posición en lugar de bisección
                 iteraciones, raiz, error_final, lista_iteraciones = metodo_falsa_posicion(a, b, funcion, error_minimo, max_iteraciones)
 
                 with col2:
