@@ -35,8 +35,8 @@ with tab1:
 
     with col1:
         st.subheader("Ingrese los valores de entrada:")
-        a = st.number_input("Valor de a", min_value = 0.00001, step = 0.5, value = 0.0001)
-        b = st.number_input("Valor de b", min_value = 0.00001, step = 0.5)
+        a = st.number_input("Valor de a", min_value = 0.00001, step = 0.5, format="%f")
+        b = st.number_input("Valor de b", min_value = 0.00001, step = 0.5, format="%f")
         funcion = st.text_input("Función")
 
         criterio = st.selectbox("Criterio de parada", ["Error Mínimo", "Número de Iteraciones"])
