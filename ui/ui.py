@@ -3,7 +3,14 @@ import numpy as np
 import plotly.express as px
 import sympy as sp
 import math
-from pprint import pprint
+import os
+import sys
+
+
+root_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
+if root_path not in sys.path:
+    sys.path.append(root_path)
+    
 from methods.bisection import metodo_biseccion
 
 st.set_page_config(layout="wide", page_title="Solucionador Numérico", page_icon = "⚛️")
