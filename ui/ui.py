@@ -42,10 +42,10 @@ with tab1:
         criterio = st.selectbox("Criterio de parada", ["Error Mínimo", "Número de Iteraciones"])
 
         if criterio == "Error Mínimo":
-            error_minimo = st.text_input("Error Mínimo")
+            error_minimo = st.number_input("Error Mínimo", format="%f")
             max_iteraciones = None
         else:
-            max_iteraciones = st.text_input("Número de Iteraciones")
+            max_iteraciones = st.number_input("Número de Iteraciones", step = 1)
             error_minimo = None
 
         st.subheader("Ingrese el rango del gráfico de la función.")
