@@ -12,6 +12,12 @@ if root_path not in sys.path:
     sys.path.append(root_path)
     
 from methods.bisection import metodo_biseccion
+from methods.falsa_posicion import metodo_falsa_posicion
+from methods.newton_raphson import newton_raphson
+from methods.secante import metodo_secante
+from methods.muller import metodo_muller
+from methods.trapecio import metodo_trapecio
+from methods.simpson import metodo_simpson
 
 st.set_page_config(layout="wide", page_title="Solucionador Numérico", page_icon = "⚛️")
 
@@ -23,41 +29,6 @@ tab1, tab2, tab3, tab4, tab5, tab6, tab7, tab8 = st.tabs([
 ])
 
 # ----------------------------------- BISECTION TAB -------------------------------------------------
-
-# def metodo_biseccion(a, b, funcion, error_minimo = None, max_iteraciones = None):
-#     def evaluar_funcion(x):
-#         return eval(funcion)
-
-#     c = (a + b) / 2
-#     est_error = 100
-#     list_vals = [a, b, c, est_error]
-#     list_its = [list_vals]
-#     new_itr = 0
-
-#     while True:
-#         new_list = [evaluar_funcion(x) for x in list_vals[:3]]
-
-#         if (new_list[0] * new_list[2]) < 0:
-#             list_vals = [list_vals[0], list_vals[2]]
-#         elif (new_list[0] * new_list[2]) > 0:
-#             list_vals = [list_vals[2], list_vals[1]]
-#         else:
-#             break
-
-#         list_vals.append((list_vals[0] + list_vals[1]) / 2)
-#         new_c = list_vals[2]
-#         old_c = list_its[new_itr][2]
-#         est_error = abs((new_c - old_c) / new_c) * 100
-#         list_vals.append(est_error)
-#         list_its.append(list_vals)
-#         new_itr += 1
-
-#         if error_minimo is not None and est_error <= error_minimo:
-#             break
-#         if max_iteraciones is not None and new_itr >= max_iteraciones:
-#             break
-
-#     return new_itr + 1, list_vals[2], est_error, list_its
 
 with tab1:
     col1, col2,col3 = st.columns([1, 1, 1])
@@ -120,44 +91,6 @@ with tab1:
 
 # ----------------------------------- FALSE POSITION TAB --------------------------------------------
 
-def metodo_falsa_posicion(a, b, funcion, error_minimo=None, max_iteraciones=None):
-    def evaluar_funcion(x):
-        return eval(funcion)
-
-    c = a - (evaluar_funcion(a) * (b - a)) / (evaluar_funcion(b) - evaluar_funcion(a))
-    est_error = 100
-    list_vals = [a, b, c, est_error]
-    list_its = [list_vals]
-    new_itr = 0
-
-    while True:
-        new_list = [evaluar_funcion(x) for x in list_vals[:3]]
-
-
-        if (new_list[0] * new_list[2]) < 0:
-            list_vals = [list_vals[0], list_vals[2]]
-        elif (new_list[0] * new_list[2]) > 0:
-            list_vals = [list_vals[2], list_vals[1]]
-        else:
-            break
-
-        list_vals.append(list_vals[0] - (evaluar_funcion(list_vals[0]) * (list_vals[1] - list_vals[0])) /
-                         (evaluar_funcion(list_vals[1]) - evaluar_funcion(list_vals[0])))
-
-        new_c = list_vals[2]
-        old_c = list_its[new_itr][2]
-        est_error = abs((new_c - old_c) / new_c) * 100
-        list_vals.append(est_error)
-        list_its.append(list_vals)
-        new_itr += 1
-
-        if error_minimo is not None and est_error <= error_minimo:
-            break
-        if max_iteraciones is not None and new_itr >= max_iteraciones:
-            break
-
-    return new_itr + 1, list_vals[2], est_error, list_its
-
 with tab2:
 
     col1, col2, col3 = st.columns([1, 1, 1])
@@ -218,43 +151,6 @@ with tab2:
 
 
 # ----------------------------------- NEWTON RAPHSON TAB --------------------------------------------
-
-def newton_raphson(new_x, funcion, max_iters = None, min_error = None):
-
-    x = sp.Symbol('x')
-    deri = sp.diff(funcion, x)
-
-    evaluar_funcion = sp.lambdify(x, funcion)
-    evaluar_derivada = sp.lambdify(x, deri)
-
-    iters = 0
-    est_err = 100
-
-
-    list_its = [[iters, new_x, est_err]]
-    iter_list = []
-
-    while True:
-
-        old_x = new_x
-        new_x = new_x - (evaluar_funcion(new_x) / evaluar_derivada(new_x))
-        est_err = abs((new_x - old_x) / new_x) * 100
-
-        iter_list.append(iters+1)
-        iter_list.append(format(new_x, ".5f"))
-        iter_list.append(format(est_err,".3f"))
-        list_its.append(iter_list.copy())
-
-        iters += 1
-        iter_list.clear()
-
-        if min_error is not None and est_err < min_error:
-            break
-
-        if max_iters is not None and iters >= max_iters:
-            break
-
-    return list_its, est_err, new_x
 
 with tab3:
 
@@ -327,34 +223,6 @@ with tab3:
 
 # ----------------------------------- SECANT TAB ----------------------------------------------------
 
-def metodo_secante(x0, x1, funcion, max_iters=None, min_error=None):
-    x = sp.Symbol('x')
-
-    def evaluar_funcion(x):
-        return eval(funcion)
-
-    iters = 0
-    est_err = 100
-    list_its = [[iters, x0, x1, est_err]]
-
-    while True:
-        old_x1 = x1
-        x1 = x1 - evaluar_funcion(x1) * (x1 - x0) / (evaluar_funcion(x1) - evaluar_funcion(x0))
-        est_err = abs((x1 - old_x1) / x1) * 100
-
-        iters += 1
-        list_its.append([iters, x0, old_x1, est_err])
-
-        if min_error is not None and est_err < min_error:
-            break
-
-        if max_iters is not None and iters >= max_iters:
-            break
-
-        x0 = old_x1
-
-    return list_its, est_err, x1
-
 with tab4:
     col1, col2, col3 = st.columns([1, 1, 1])
 
@@ -410,45 +278,6 @@ with tab4:
                 st.error(f"Error en el cálculo: {str(e)}")
 
 # ----------------------------------- MÜLLER TAB ----------------------------------------------------
-
-def metodo_muller(x0, x1, x2, funcion, max_iters=None, min_error=None):
-    x = sp.Symbol('x')
-
-    def evaluar_funcion(x):
-        return eval(funcion)
-
-    iters = 0
-    est_err = 100
-    list_its = [[iters, x0, x1, x2, est_err]]
-
-    while True:
-        h1, h2 = x1 - x0, x2 - x1
-        d1 = (evaluar_funcion(x1) - evaluar_funcion(x0)) / h1
-        d2 = (evaluar_funcion(x2) - evaluar_funcion(x1)) / h2
-        a = (d2 - d1) / (h2 + h1)
-        b = a * h2 + d2
-        c = evaluar_funcion(x2)
-
-        discriminant = b**2 - 4 * a * c
-        if discriminant < 0:
-            raise ValueError("El método de Muller requiere raíces reales en cada paso.")
-
-        sqrt_disc = discriminant**0.5
-        x3 = x2 + (-2 * c) / (b + sqrt_disc if b > 0 else b - sqrt_disc)
-        est_err = abs((x3 - x2) / x3) * 100
-
-        iters += 1
-        list_its.append([iters, x0, x1, x2, est_err])
-
-        if min_error is not None and est_err < min_error:
-            break
-
-        if max_iters is not None and iters >= max_iters:
-            break
-
-        x0, x1, x2 = x1, x2, x3
-
-    return list_its, est_err, x3
 
 with tab5:
     col1, col2, col3 = st.columns([1, 1, 1])
@@ -583,20 +412,6 @@ with tab5:
 
 # ----------------------------------- TRAPEZOIDAL RULE TAB --------------------------------------------
 
-def metodo_trapecio(funcion, a, b, n):
-    def f(x):
-        return eval(funcion)
-
-    h = (b - a) / n
-    x = np.linspace(a, b, n+1)
-    y = [f(xi) for xi in x]
-
-    integral = h * (y[0]/2 + sum(y[1:-1]) + y[-1]/2)
-
-    intervals = [[i, float(x[i]), float(y[i])] for i in range(len(x))]
-
-    return integral, intervals
-
 with tab6:
     col1, col2, col3 = st.columns([1, 1, 1])
 
@@ -642,25 +457,6 @@ with tab6:
                 st.error(f"Error en el cálculo: {str(e)}")
 
 # ----------------------------------- SIMPSON'S RULE TAB --------------------------------------------
-
-def metodo_simpson(funcion, a, b, n):
-    if n % 2 != 0:
-        raise ValueError("n debe ser par")
-
-    def f(x):
-        return eval(funcion)
-
-    h = (b - a) / n
-    x = np.linspace(a, b, n+1)
-    y = [f(xi) for xi in x]
-
-    integral = h/3 * (y[0] + y[-1] +
-                     4*sum(y[i] for i in range(1, n, 2)) +
-                     2*sum(y[i] for i in range(2, n-1, 2)))
-
-    intervals = [[i, float(x[i]), float(y[i])] for i in range(len(x))]
-
-    return integral, intervals
 
 with tab7:
     col1, col2, col3 = st.columns([1, 1, 1])
