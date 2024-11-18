@@ -1,4 +1,6 @@
 import numpy as np
+import sympy as sp
+import math
 
 def metodo_trapecio(funcion, a, b, n):
     def f(x):
