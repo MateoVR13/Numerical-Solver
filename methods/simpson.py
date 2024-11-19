@@ -1,4 +1,6 @@
 import numpy as np
+import sympy as sp
+import math
 
 def metodo_simpson(funcion, a, b, n):
     if n % 2 != 0:

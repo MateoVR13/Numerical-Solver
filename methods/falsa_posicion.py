@@ -1,3 +1,8 @@
+import numpy as np
+import sympy as sp
+import math
+
+
 def metodo_falsa_posicion(a, b, funcion, error_minimo=None, max_iteraciones=None):
     def evaluar_funcion(x):
         return eval(funcion)

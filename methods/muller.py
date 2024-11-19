@@ -1,5 +1,6 @@
+import numpy as np
 import sympy as sp
-
+import math
 
 def metodo_muller(x0, x1, x2, funcion, max_iters=None, min_error=None):
     x = sp.Symbol('x')

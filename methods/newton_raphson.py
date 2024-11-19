@@ -1,4 +1,6 @@
+import numpy as np
 import sympy as sp
+import math
 
 def newton_raphson(new_x, funcion, max_iters = None, min_error = None):
     

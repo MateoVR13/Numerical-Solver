@@ -1,3 +1,7 @@
+import numpy as np
+import sympy as sp
+import math
+
 from methods import serie_taylor
 
 def serie_maclaurin(funcion, n, punto):

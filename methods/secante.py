@@ -1,4 +1,6 @@
+import numpy as np
 import sympy as sp
+import math
 
 def metodo_secante(x0, x1, funcion, max_iters=None, min_error=None):
     x = sp.Symbol('x')
